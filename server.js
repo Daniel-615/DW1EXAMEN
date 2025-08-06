@@ -2,6 +2,8 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("./models");
+const CategoriaRoutes= require("./routes/categoria.route")
+const NetflixRoutes=require("./routes/netflix.route")
 class Server {
   constructor() {
     this.app = express();
@@ -27,6 +29,8 @@ class Server {
     });
 
     //aqui colocar rutas
+    new NetflixRoutes(this.app);
+    new CategoriaRoutes(this.app)
   } 
 
   async connectDatabase() {
