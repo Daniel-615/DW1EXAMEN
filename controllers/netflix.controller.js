@@ -60,15 +60,15 @@ class NetflixController {
     async findByNombre(req, res) {
         const nombre = req.params.nombre;
         try {
-            const data = await Netflix.findOne({where: nombre});
+            const data = await Netflix.findOne({ where: { nombre } });
             if (data) {
                 res.send(data);
             } else {
-                res.status(404).send({ message: `Catalogos con nombre=${nombre} no encontrada.` });
+                res.status(404).send({ message: `Catalogo con nombre=${nombre} no encontrada.` });
             }
         } catch (err) {
             res.status(500).send({
-                message: "Error al obtener los catalogos con nombre=" + nombre
+                message: "Error al obtener el catalogo con nombre=" + nombre
             });
         }
     }
