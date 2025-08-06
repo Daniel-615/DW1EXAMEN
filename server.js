@@ -3,7 +3,8 @@ const bodyParser = require("body-parser");
 const cors = require("cors");
 const db = require("./models");
 const CategoriaRoutes= require("./routes/categoria.route")
-const NetflixRoutes=require("./routes/netflix.route")
+const NetflixRoutes=require("./routes/netflix.route");
+const { FORCE } = require("sequelize/lib/index-hints");
 class Server {
   constructor() {
     this.app = express();
@@ -35,7 +36,7 @@ class Server {
 
   async connectDatabase() {
     try {
-      await db.sequelize.sync();
+      await db.sequelize.sync({ force: true });
       console.log("Base de datos sincronizada correctamente.");
     } catch (error) {
       console.error("Error al sincronizar la base de datos:", error);

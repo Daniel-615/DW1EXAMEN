@@ -57,7 +57,21 @@ class NetflixController {
             });
         }
     }
-
+    async findByNombre(req, res) {
+        const nombre = req.params.nombre;
+        try {
+            const data = await Netflix.findOne({where: nombre});
+            if (data) {
+                res.send(data);
+            } else {
+                res.status(404).send({ message: `Catalogos con nombre=${nombre} no encontrada.` });
+            }
+        } catch (err) {
+            res.status(500).send({
+                message: "Error al obtener los catalogos con nombre=" + nombre
+            });
+        }
+    }
     async update(req, res) {
         const id = req.params.id;
         const { nombre } = req.body;

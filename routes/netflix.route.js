@@ -13,6 +13,7 @@ class NetflixRoutes {
     this.router.post("/", this.controller.create.bind(this.controller));
     this.router.get("/", this.controller.findAll.bind(this.controller));
     this.router.get("/:id/", this.controller.findOne.bind(this.controller));
+    this.router.get("/nombre/:id/", this.controller.findByNombre.bind(this.controller));
     this.router.put("/:id/", this.controller.update.bind(this.controller));
     this.router.delete("/:id/", this.controller.delete.bind(this.controller));
   }
